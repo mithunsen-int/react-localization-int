@@ -7,20 +7,19 @@
 
 import React from 'react';
 
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
-
-import { LandingPage } from './LandingPage';
 import { LocalizationProvider } from './LocalizationProvider';
 import enTranslations from './translations/en.json';
 import frTranslations from './translations/fr.json';
+import { Home } from './Home';
+import { View } from 'react-native';
 
 function App(): JSX.Element {
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
+    <View style={{ flex: 1 }}>
       <LocalizationProvider source={{ en: enTranslations, fr: frTranslations }} defaultLocale='fr'>
-        <LandingPage />
+        <Home />
       </LocalizationProvider>
-    </GestureHandlerRootView>
+    </View>
   );
 }
 
