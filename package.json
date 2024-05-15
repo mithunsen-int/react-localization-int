@@ -5,17 +5,18 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/react": "^18.3.1",
-    "@types/react-native": "^0.73.0",
-    "react": "^18.2.0",
-    "react-native": "^0.74.1",
-    "typescript": "^5.4.5"
+    "@types/react": "18.0.15",
+    "@types/react-native": "0.69.3",
+    "react": "18.0.0",
+    "react-native": "0.69.3",
+    "typescript": "^5.2.2"
   },
   "peerDependencies": {
     "react": "*",

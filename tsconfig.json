@@ -1,12 +1,15 @@
 {
-    "compilerOptions": {
-      "jsx": "react",
-      "target": "es5",
-      "module": "commonjs",
-      "declaration": true,
-      "outDir": "./dist"
-    },
-    "include": ["src"],
-    "exclude": ["node_modules", "dist"]
-  }
-  
+  "compilerOptions": {
+    "jsx": "react",
+    "target": "es5",
+    "module": "esnext",
+    "declaration": true,
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}

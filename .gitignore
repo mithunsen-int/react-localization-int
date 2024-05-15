@@ -7,3 +7,16 @@
 node_modules/
 npm-debug.log
 yarn-error.log
+
+build/
+.idea
+.gradle
+local.properties
+*.iml
+*.hprof
+.cxx/
+*.keystore
+!debug.keystore
+drawable-*
+
+example/ios/Pods/
