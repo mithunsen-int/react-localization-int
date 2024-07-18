@@ -1,21 +1,18 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.useTranslation = exports.LocalizationProvider = void 0;
-var react_1 = require("react");
+import React, { createContext, useContext, useEffect, useState, } from "react";
 /**
  * Context for localization.
  * @type {React.Context<LocalizationContextType | undefined>}
  */
-var LocalizationContext = (0, react_1.createContext)(undefined);
+export var LocalizationContext = createContext(undefined);
 /**
  * Localization provider component.
  * @param {Props} props - Props for LocalizationProvider.
- * @returns {React.ReactElement} A React component.
+ * @returns {React.FC} A React component.
  */
-var LocalizationProvider = function (_a) {
-    var children = _a.children, _b = _a.defaultLocale, defaultLocale = _b === void 0 ? 'en' : _b, source = _a.source;
-    var _c = (0, react_1.useState)(defaultLocale), locale = _c[0], setLocale = _c[1];
-    var _d = (0, react_1.useState)({}), translations = _d[0], setTranslations = _d[1];
+export var LocalizationProvider = function (_a) {
+    var children = _a.children, _b = _a.defaultLocale, defaultLocale = _b === void 0 ? "en" : _b, source = _a.source;
+    var _c = useState(defaultLocale), locale = _c[0], setLocale = _c[1];
+    var _d = useState({}), translations = _d[0], setTranslations = _d[1];
     /**
      * Function to change the locale.
      * @param {string} locale - The new locale to set.
@@ -33,7 +30,7 @@ var LocalizationProvider = function (_a) {
                 setTranslations(source[locale]);
             }
             else {
-                throw new Error('Provided locale does not exist in source!');
+                throw new Error("Provided locale does not exist in source!");
             }
         }
         catch (error) {
@@ -46,26 +43,24 @@ var LocalizationProvider = function (_a) {
      * @returns {string} The translated string.
      */
     var t = function (key) { return translations[key] || key; };
-    (0, react_1.useEffect)(function () {
+    useEffect(function () {
         (function () {
             locale && loadTranslations(locale);
         })();
     }, [locale]);
-    (0, react_1.useEffect)(function () {
-        console.log('Using translation: ', translations);
+    useEffect(function () {
+        console.log("Using translation: ", translations);
     }, [translations]);
-    return (react_1.default.createElement(LocalizationContext.Provider, { value: { t: t, locale: locale, changeLocale: changeLocale } }, children));
+    return (React.createElement(LocalizationContext.Provider, { value: { t: t, locale: locale, changeLocale: changeLocale } }, children));
 };
-exports.LocalizationProvider = LocalizationProvider;
 /**
  * Hook to use translations in components.
  * @returns {LocalizationContextType} Localization context.
  */
-var useTranslation = function () {
-    var context = (0, react_1.useContext)(LocalizationContext);
-    if (context === undefined) {
+export var useTranslation = function () {
+    var context = useContext(LocalizationContext);
+    if (!context || context === undefined) {
         throw new Error("useTranslation must be used within LocalizationProvider");
     }
     return context;
 };
-exports.useTranslation = useTranslation;
